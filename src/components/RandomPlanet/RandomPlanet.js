@@ -8,32 +8,24 @@ import SwapiService from '../../services/SwapiService';
   }
 
   state = {
-    imageId: null,
-    planetName: null,
-    population: null,
-    rotationPeriod: null,
-    diameter: null
+    planet: {}
   }
 
  
-  SwapiService = new SwapiService();        
+  SwapiService = new SwapiService();         
 
   updatePlanet() {
     const id = Math.floor(Math.random() * 24) + 2;
     this.SwapiService.getPlanet(id)
     .then( (planet) => { 
       this.setState({
-        imageId: id,
-        planetName: planet.name,
-        population: planet.population,
-        rotationPeriod: planet.rotation_period,
-        diameter: planet.diameter 
+        planet
       })
     })
   }
 
    render() {
-    const { imageId, planetName, population, rotationPeriod, diameter } = this.state;
+    const { planet: { imageId, planetName, population, rotationPeriod, diameter } } = this.state;
 
     return(
       <div className="container">
